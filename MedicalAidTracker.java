@@ -3,9 +3,9 @@ import java.sql.*;
 public class MedicalAidTracker {
 
     // Database connection details
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/medical_aid_tracker";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/medical_aid_tracker"; 
     private static final String DB_USERNAME = "root";
-    private static final String DB_PASSWORD = "sam123"; // Update with your MySQL password
+    private static final String DB_PASSWORD = "your_password"; // Update with your MySQL password
 
     // Utility method to obtain a connection
     public static Connection getConnection() throws SQLException {
