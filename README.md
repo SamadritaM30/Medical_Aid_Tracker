@@ -1,7 +1,7 @@
 # Medical Aid Tracker
 
 ## Overview
-Medical Aid Tracker is a Java-based system that helps users find and book medical assistance, including doctor appointments, hospital beds, and ambulance services. The system uses MySQL as the backend database and provides functionalities such as searching for doctors, checking hospital bed availability, and booking emergency services.
+Medical Aid Tracker is a Java-based system that helps users find and book medical assistance, including doctor appointments, hospital beds, and ambulance services. The system uses MySQL as the backend database and provides the following functionalities. 
 
 ---
 
@@ -10,10 +10,10 @@ Medical Aid Tracker is a Java-based system that helps users find and book medica
   Find doctors based on their specialization (e.g., Cardiologist, Neurologist). Users can search for a specific field and get a list of available doctors along with their consultation timings and hospital details.
 
 - **Search Emergency Doctors with Available Beds**:  
-  Find doctors at hospitals where beds are available. This feature ensures patients in urgent need can quickly locate a doctor along with ICU or general ward availability.
+  Find doctors at hospitals where beds (ICU / general) are available. This feature ensures patients in urgent need can quickly locate a doctor along with ICU or general ward availability.
 
 - **Search for Available Ambulance Services**:  
-  Search for nearby ambulances along with their current availability and last known location. This ensures quick emergency response.
+  Provides real-time tracking of nearby ambulances, displaying their current availability status and last known location. It also includes drivers' contact numbers, ensuring quick and efficient emergency response.
 
 - **Book a Doctor Appointment**:  
   Allows users to book a doctor appointment by selecting a doctor, date, and time. The system records the appointment details in the database.
