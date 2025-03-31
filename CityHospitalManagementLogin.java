@@ -7,6 +7,11 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+
+import javafx.scene.control.Label;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -205,19 +210,19 @@ public class CityHospitalManagementLogin extends Application {
                     TextInputDialog contactDialog = new TextInputDialog();
                     contactDialog.setTitle("Contact Number");
                     contactDialog.setHeaderText("Enter Contact Number");
-                    contactDialog.setContentText("Contact Number:");
-                    contactDialog.showAndWait().ifPresent(contact -> {
+                    contactDialog.setContentText("Contact Number:"); 
+                    contactDialog.showAndWait().ifPresent(contact_number -> {
                         try {
                             LocalDate.parse(dob); // Validate date format
-                            MedicalAidTracker.addNewPatient(name, dob, contact);
-                            showInfo("Patient added successfully.");
+                            int patientId = MedicalAidTracker.addNewPatient(name, dob, contact_number);
+                            showInfo("Patient added successfully! Assigned Patient ID: " + patientId);
                         } catch (Exception ex) {
-                            showError("Error adding patient: " + ex.getMessage());
-                        }
-                    });
-                });
+                    showError("Error adding patient: " + ex.getMessage());
+                }
             });
         });
+    });
+});
 
         Button exitButton = createButton("7. Exit");
         exitButton.setOnAction(e -> {
