@@ -1,11 +1,9 @@
 import java.sql.*;
-
 public class MedicalAidTracker {
-
     // Database connection details
     private static final String DB_URL = "jdbc:mysql://localhost:3306/medical_aid_tracker"; 
     private static final String DB_USERNAME = "root";
-    private static final String DB_PASSWORD = "your_password"; // Update with your MySQL password
+    private static final String DB_PASSWORD = "sam123"; // Update with your MySQL password
 
     // Utility method to obtain a connection
     public static Connection getConnection() throws SQLException {
@@ -110,19 +108,32 @@ public class MedicalAidTracker {
             }
         }
     }
+// Add a new patient and display the assigned patient ID
+public static int addNewPatient(String name, String dob, String contactNumber) throws SQLException {
+    int patientId = -1; // Default value if insertion fails
+    String insertQuery = "INSERT INTO patients (name, dob, contact_number) VALUES (?, ?, ?)";
 
-    // Add a new patient
-    public static void addNewPatient(String name, String dobStr, String contactNumber) throws SQLException {
-        String insert = "INSERT INTO Patients (name, dob, contact_number) VALUES (?, ?, ?)";
-        try (Connection conn = getConnection();
-             PreparedStatement ps = conn.prepareStatement(insert)) {
-            ps.setString(1, name);
-            ps.setDate(2, Date.valueOf(dobStr));
-            ps.setString(3, contactNumber);
-            int rows = ps.executeUpdate();
-            if (rows <= 0) {
-                throw new SQLException("Failed to add patient.");
+    try (Connection conn = getConnection();
+         PreparedStatement pstmt = conn.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS)) {
+        
+        pstmt.setString(1, name);
+        pstmt.setString(2, dob);
+        pstmt.setString(3, contactNumber);
+
+        int rowsAffected = pstmt.executeUpdate();
+        if (rowsAffected > 0) {
+            try (ResultSet rs = pstmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    patientId = rs.getInt(1);
+                }
             }
+        } else {
+            throw new SQLException("Failed to add patient.");
         }
     }
+    return patientId;
+}
+
+
+
 }
