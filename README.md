@@ -43,8 +43,9 @@
 
 ## 🧠 Database Schema
 
-### 📌 Entity-Relationship Diagram
-![ER Diagram](./path-to-uploaded-er-diagram.png) <!-- Replace with actual path -->
+## 📌 Entity-Relationship Diagram
+
+<a href="https://github.com/SamadritaM30/Medical_Aid_Tracker/blob/main/NEW_ER.drawio.pdf" target="_blank">📄 Click here to view the ER Diagram (PDF)</a>
 
 ---
 
