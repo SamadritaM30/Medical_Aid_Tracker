@@ -10,7 +10,7 @@ public class med_aid_track {
  
     private static final String DB_URL = "jdbc:mysql://localhost:3306/medical_aid_tracker";
     private static final String DB_USERNAME = "root";
-    private static final String DB_PASSWORD = "sam123";
+    private static final String DB_PASSWORD = "your_password";
 
 
     private static String readValidContactNumber(Scanner scanner, String prompt) {
