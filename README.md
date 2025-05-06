@@ -126,3 +126,9 @@
 2. Create a MySQL database:
    ```sql
    CREATE DATABASE medical_aid_tracker;
+3. You can import the dataset from data.sql file
+4. Run the "med_aid.track.java" file on terminal 
+5. You're set to go !
+
+Here is the preview of it !
+![image](https://github.com/user-attachments/assets/0925e5fa-04f4-4442-9492-03981cf479a4)
