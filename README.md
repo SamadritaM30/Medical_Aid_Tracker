@@ -1,104 +1,127 @@
-# Medical Aid Tracker
+# 🏥 Medical Aid Tracker
 
-## Overview
-Medical Aid Tracker is a Java-based system that helps users find and book medical assistance, including doctor appointments, hospital beds, and ambulance services. The system uses MySQL as the backend database and provides the following functionalities. 
-
----
-
-## Features
-- **Search Doctors by Specialization**:  
-  Find doctors based on their specialization (e.g., Cardiologist, Neurologist). Users can search for a specific field and get a list of available doctors along with their consultation timings and hospital details.
-
-- **Search Emergency Doctors with Available Beds**:  
-  Find doctors at hospitals where beds (ICU / general) are available. This feature ensures patients in urgent need can quickly locate a doctor along with ICU or general ward availability.
-
-- **Search for Available Ambulance Services**:  
-  Provides real-time tracking of nearby ambulances, displaying their current availability status and last known location. It also includes drivers' contact numbers, ensuring quick and efficient emergency response.
-
-- **Book a Doctor Appointment**:  
-  Allows users to book a doctor appointment by selecting a doctor, date, and time. The system records the appointment details in the database.
-
-- **Add a New Patient**:  
-  Patients can be registered in the system by providing details like name, date of birth, and contact information. This helps in maintaining patient history.
-
-- **Exit the System**:  
-  Users can safely exit the application when they are done with their activities.
+## 📌 Overview
+**Medical Aid Tracker** is a Java-based application that streamlines the process of accessing medical services such as doctor consultations, ambulance bookings, and hospital bed availability. The system interacts with a MySQL database and offers distinct roles for **Patients** and **Medical Representatives**, with tailored functionalities for each.
 
 ---
 
-## Technologies Used
-- **Java** (JDBC for database connectivity)
-- **MySQL** (Database management)
-- **E/R Model** (Database schema based on entity relationships)
+## 🚀 Features
+
+### 👤 Patient Login
+- 🔍 Search Doctors by Specialization
+- 🚑 Search Emergency Doctors with Available Beds
+- 🚐 Search for Available Ambulance Services
+- 📅 Book a Doctor Appointment
+- ➕ Add a New Patient
+- 📋 Show Appointment Details
+- 🗑️ Delete Patient Record (and its Appointments)
+- ❌ Cancel Appointment by Appointment ID
+- 🧾 Show Patient Details
+
+### 🏥 Medical Representative Login
+- 🩺 Update Doctor Availability Status
+- 🛏️ Update Bed Availability Status
+- ❌ Cancel Appointments by Doctor ID
+- 🗑️ Delete Patient Record (and its Appointments)
+- 📋 Show Appointment Details
+- 🧾 Show Patient Details
+
+### 🔐 Login Options
+- 1️⃣ Patient Login
+- 2️⃣ Medical Representative Login
+- 3️⃣ Exit Application
 
 ---
 
-## Database Schema
-This project follows an ER diagram consisting of the following tables:
-
-### 1. Patients
-| Column         | Type        | Description                      |
-|---------------|------------|----------------------------------|
-| `patient_id`  | INT (PK)    | Unique patient identifier       |
-| `name`        | VARCHAR     | Patient name                    |
-| `date_of_birth` | DATE      | Patient's date of birth         |
-| `contact_number` | VARCHAR  | Contact details                 |
-
-### 2. Doctors
-| Column           | Type        | Description                          |
-|-----------------|------------|--------------------------------------|
-| `doctor_id`     | INT (PK)    | Unique doctor identifier            |
-| `name`          | VARCHAR     | Doctor's name                       |
-| `specialization` | VARCHAR    | Doctor's field of expertise         |
-| `availability_status` | ENUM ('Available', 'Unavailable') | Availability status |
-| `timing`        | VARCHAR     | Consultation timings                 |
-| `hospital_id`   | INT (FK)    | Associated hospital                  |
-
-### 3. Hospitals
-| Column         | Type      | Description                      |
-|---------------|----------|----------------------------------|
-| `hospital_id` | INT (PK) | Unique hospital identifier       |
-| `name`        | VARCHAR  | Hospital name                    |
-| `address`     | TEXT     | Hospital address                 |
-
-### 4. Beds
-| Column         | Type      | Description                      |
-|---------------|----------|----------------------------------|
-| `bed_id`      | INT (PK) | Unique bed identifier           |
-| `hospital_id` | INT (FK) | Associated hospital             |
-| `ward_type`   | ENUM ('ICU', 'General') | Type of ward |
-| `availability_status` | ENUM ('Available', 'Occupied') | Bed availability |
-
-### 5. Appointments
-| Column             | Type      | Description                          |
-|-------------------|----------|--------------------------------------|
-| `appointment_id`  | INT (PK) | Unique appointment identifier       |
-| `patient_id`      | INT (FK) | Associated patient                  |
-| `doctor_id`       | INT (FK) | Assigned doctor                     |
-| `hospital_id`     | INT (FK) | Hospital where the appointment is booked |
-| `appointment_date`| DATE      | Appointment date                    |
-| `appointment_time`| TIME      | Appointment time                    |
-| `appointment_status` | ENUM ('Booked', 'Completed', 'Cancelled') | Status of the appointment |
-
-### 6. Ambulance
-| Column          | Type      | Description                     |
-|----------------|----------|---------------------------------|
-| `ambulance_id` | INT (PK) | Unique ambulance identifier    |
-| `patient_id`   | INT (FK) | Associated patient             |
-| `contact_number` | VARCHAR | Driver's contact              |
-| `last_location` | VARCHAR | Last known location           |
-| `availability_status` | ENUM ('Available', 'Busy') | Availability of the ambulance |
+## 🧰 Technologies Used
+- **Java** – Core programming language
+- **JDBC** – For MySQL connectivity
+- **MySQL** – Backend database
+- **E/R Modeling** – For logical database schema
 
 ---
 
-## Setup and Installation
+## 🧠 Database Schema
 
-### 1. Prerequisites
-- Install **Java 8+**
-- Install **MySQL Server**
-- Install **JDBC Driver** for MySQL
+### 📌 Entity-Relationship Diagram
+![ER Diagram](./path-to-uploaded-er-diagram.png) <!-- Replace with actual path -->
 
-### 2. Database Configuration
-1. Create the database in MySQL:
+---
+
+## 📂 Tables & Fields
+
+### 1. `patient`
+| Field | Type | Description |
+|-------|------|-------------|
+| `patient_id` | INT (PK) | Unique identifier |
+| `name` | VARCHAR | Patient name |
+| `dob` | DATE | Date of birth |
+| `contact_number` | VARCHAR | Contact details |
+| `blood_group` | VARCHAR | Blood group |
+
+### 2. `doctors`
+| Field | Type | Description |
+|-------|------|-------------|
+| `doctor_id` | INT (PK) | Unique doctor ID |
+| `name` | VARCHAR | Doctor's name |
+| `specialization` | VARCHAR | Area of expertise |
+| `availability_status` | ENUM | 'Available', 'Unavailable' |
+| `from_time` | TIME | Start of consultation |
+| `to_time` | TIME | End of consultation |
+| `hospital_id` | INT (FK) | Linked hospital |
+
+### 3. `hospitals`
+| Field | Type | Description |
+|-------|------|-------------|
+| `hospital_id` | INT (PK) | Unique hospital ID |
+| `hospital_name` | VARCHAR | Name of the hospital |
+| `address` | TEXT | Location details |
+| `contact_number` | VARCHAR | Hospital phone |
+
+### 4. `beds`
+| Field | Type | Description |
+|-------|------|-------------|
+| `bed_id` | INT (PK) | Bed ID |
+| `hospital_id` | INT (FK) | Hospital linkage |
+| `ward_type` | ENUM | 'ICU', 'General' |
+| `status` | ENUM | 'Available', 'Occupied' |
+
+### 5. `appointments`
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | INT (PK) | Appointment ID |
+| `patient` | INT (FK) | Linked patient |
+| `doctor_id` | INT (FK) | Assigned doctor |
+| `hospital` | INT (FK) | Hospital location |
+| `date` | DATE | Appointment date |
+| `time` | TIME | Time of appointment |
+| `status` | ENUM | 'Booked', 'Completed', 'Cancelled' |
+
+### 6. `ambulance`
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | INT (PK) | Ambulance ID |
+| `driver` | VARCHAR | Driver name |
+| `location` | VARCHAR | Current/last known location |
+| `status` | ENUM | 'Available', 'Busy' |
+
+### 7. `ambulance_phone`
+| Field | Type | Description |
+|-------|------|-------------|
+| `phone` | VARCHAR | Driver contact |
+| `id` | INT (FK) | Ambulance reference |
+
+---
+
+## ⚙️ Setup & Installation
+
+### 📋 Prerequisites
+- Java 8+
+- MySQL Server
+- JDBC MySQL Driver
+
+### 🏗️ Steps
+1. Clone this repository.
+2. Create a MySQL database:
    ```sql
    CREATE DATABASE medical_aid_tracker;
